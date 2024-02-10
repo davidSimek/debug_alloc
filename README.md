@@ -1,4 +1,4 @@
-# Debug Allocator Library
+# C memory tracking library
 
 The Debug Allocator Library (`debug_alloc`) is a lightweight C library for debugging memory allocation in C programs. It provides functions for tracking memory allocation and deallocation, as well as debugging information for easier identification of memory-related issues.
 
