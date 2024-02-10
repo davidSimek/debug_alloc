@@ -1,3 +1,5 @@
+#define DEBUG_NOW
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -123,7 +125,7 @@ void* getFromDynamicArray(DynamicArray* thisArray, size_t index) {
 
 void dbg_add_operation(const char* data_name, OperationType operation_name, size_t size, const char* message) {
     Operation operation = {operation_name, size, message};
-    for (int i = 0; i < named_data_arr.used; ++i) {
+    for (int i = 0; i < named_data_arr.used / sizeof(NamedData); ++i) {
         NamedData* named_data = &((NamedData*)named_data_arr.buffer)[i];
         if (strcmp(named_data->name, data_name) == 0) {
             // found
@@ -155,7 +157,7 @@ bool dbg_init() {
 }
 
 void dbg_clean() {
-    for (int i = 0; i < named_data_arr.used; ++i) {
+    for (int i = 0; i < named_data_arr.used / sizeof(DynamicArray); ++i) {
         destroy_dynamic_array(&((NamedData*)named_data_arr.buffer)[i].operations);
     }
     destroy_dynamic_array(&named_data_arr);
