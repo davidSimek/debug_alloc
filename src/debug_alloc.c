@@ -155,7 +155,7 @@ bool dbg_init() {
 }
 
 void dbg_clean() {
-    for (int i = 0; i < named_data_arr.used); ++i) {
+    for (int i = 0; i < named_data_arr.used; ++i) {
         destroy_dynamic_array(&((NamedData*)named_data_arr.buffer)[i].operations);
     }
     destroy_dynamic_array(&named_data_arr);
