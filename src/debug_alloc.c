@@ -1,10 +1,5 @@
-#ifndef DEBUG_ALLOC
-#define DEBUG_ALLOC
-
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
 
 #include "debug_alloc.h"
 
@@ -26,7 +21,7 @@ void dbg_free(void* pointer, const char* data_name) {
     free(pointer);
 }
 
-bool dbg_init() {}
+bool dbg_init() { return true; }
 
 void dbg_clean() {}
 
@@ -309,5 +304,4 @@ void dbg_info_by_name(char* name) {
     printf("|___________________________\n");
 }
 
-#endif
 #endif
