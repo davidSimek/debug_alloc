@@ -1,5 +1,3 @@
-#define DEBUG_NOW
-
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
