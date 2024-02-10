@@ -46,7 +46,7 @@ gcc -o my_program my_program.c debug_alloc.c
 
 ## Configuration
 
-The Debug Allocator Library can be configured by defining the `DEBUG_ALLOC` macro. When this macro is defined, library will work the way you expect it. If it is not defined, library acts as wrapper around `malloc`, `calloc`, `realloc` and `free`, that does nothing special, but callinc coresponding fucntion. You can define this macro globally in your project or using compiler flags:
+The Debug Allocator Library can be configured by defining the `DEBUG_ALLOC` macro. When this macro is defined, library will work the way you expect it. If it is not defined, library acts as wrapper around `malloc`, `calloc`, `realloc` and `free`, that does nothing special, but calling coresponding fucntion. You can define this macro globally in your project or using compiler flags:
 
 ```bash
 gcc -DDEBUG_ALLOC -o my_program my_program.c debug_alloc.c
