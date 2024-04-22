@@ -36,6 +36,70 @@ int main() {
 }
 ```
 
+## Example
+```c
+#include "debug_alloc.h"
+#include <stdio.h>
+
+typedef struct {
+    void (*make_sound)(void*);
+} Animal;
+
+void bark(void* animal) {
+    printf("BARK!!!\n");
+}
+void meow(void* animal) {
+    printf("MEOW\n");
+}
+
+void animal_init(Animal* animal, void(*sound)(void*)) {
+    animal->make_sound = sound;
+}
+
+int main(void) {
+    
+    dbg_init();
+
+    Animal* dog = dbg_malloc(sizeof(Animal), "dog");
+    Animal* cat = dbg_malloc(sizeof(Animal), "cat");
+
+    animal_init(dog, bark);
+    animal_init(cat, meow);
+
+    dog->make_sound(dog);
+    cat->make_sound(cat);
+
+    dbg_free(cat, "cat");
+    dbg_free(dog, "dog");
+
+    dbg_info();
+
+    dbg_clean();
+
+    return 0;
+}
+
+```
+output:
+```
+BARK!!!
+MEOW
+____________________________
+|                           |
+|         DEBUG LOG         |
+|___________________________|
+|                           |
+| dog (freed)
+| 	0: MALLOC(8B)	
+| 	1: FREE	
+|___________________________|
+|                           |
+| cat (freed)
+| 	0: MALLOC(8B)	
+| 	1: FREE	
+|___________________________
+```
+
 ## Compilation
 
 To compile your project with the Debug Allocator Library, ensure that the `debug_alloc.c` source file is included in your compilation command:
